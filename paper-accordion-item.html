@@ -1,0 +1,152 @@
+<!--
+@author Arshak Khachatrian (<a href="mailto:akhxtern@gmail.com">akhxtern@gmail.com</a>)
+@website http://spacee.xyz
+@updateDate Mar 10, 2017
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+
+<dom-module id="paper-accordion-item">
+    <template>
+        <style>
+            :host .accordion-item {
+                display: flex;
+                flex-direction: column;
+            }
+
+            :host .accordion-header {
+                display: flex;
+                padding: 10px;
+                /*border: 1px solid rgba(0,0,0,.2);*/
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+                cursor: pointer;
+            }
+
+            :host .accordion-header p {
+                margin: 0;
+                padding: 0;
+            }
+
+            :host .accordion-header > div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            :host .accordion-item-title {
+                color: rgba(0,0,0,.7);
+                font-size: 14px;
+                line-height: 2.1;
+            }
+
+            :host .accordion-item-subtitle {
+                color: rgba(0,0,0,.4);
+                font-size: 12px;
+                line-height: 1.7;
+            }
+
+            :host .accordion-header iron-icon {
+                width: 19px;
+                margin: 0 10px;
+                transition: 300ms all;
+            }
+
+            :host .accordion-header > div:nth-child(2) {
+                flex: 1;
+                padding-left: 10px;
+            }
+
+            :host .accordion-content {
+                margin: 0 10px;
+                background-color: rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+            }
+
+            :host([opened]) .accordion-content {
+                overflow: auto;
+                max-height: 500px;
+            }
+
+            :host([opened]) .accordion-header iron-icon {
+                transform: rotate(90deg);
+            }
+
+            :host([icon-position="right"]) .accordion-header > div:nth-child(2) {
+                order: 1;
+            }
+            :host([icon-position="right"]) .accordion-header > div:nth-child(1) {
+                order: 2;
+            }
+
+            :host .accordion-content-padding {
+                padding: 10px 20px;
+            }
+        </style>
+
+        <div class="accordion-item">
+            <div class="accordion-header" on-tap="toggle">
+                <div>
+                    <iron-icon icon="{{ icon }}"></iron-icon>
+                </div>
+                <div>
+                    <p class="accordion-item-title">{{ title }}</p>
+                    <p class="accordion-item-subtitle">{{ subTitle }}</p>
+                </div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-content-padding">
+                    <content></content>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'paper-accordion-item',
+            properties: {
+                icon: {
+                    type: String,
+                    value: 'icons:chevron-right'
+                },
+                iconPosition: {
+                    type: String,
+                    value: 'left' // or right
+                },
+                title: {
+                    type: String,
+                    value: ''
+                },
+                subTitle: {
+                    type: String,
+                    value: ''
+                }
+            },
+            attached: function(){
+                let that = this;
+
+                if(that.iconPosition) {
+                    that.setAttribute('icon-position', that.iconPosition);
+                }
+            },
+            toggle: function(){
+                let that = this;
+                if(that.hasAttribute('opened')) {
+                    that.close();
+                } else {
+                    that.open();
+                }
+            },
+            open: function(){
+                this.setAttribute('opened', true);
+                this.fire('paper-accordion-open');
+            },
+            close: function(){
+                this.removeAttribute('opened');
+                this.fire('paper-accordion-close');
+            }
+        })
+    </script>
+</dom-module>
