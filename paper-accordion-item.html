@@ -5,11 +5,23 @@
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 
 <dom-module id="paper-accordion-item">
     <template>
         <style>
+
+            :host {
+                --paper-accordion-item-header-background: transparent;
+                --paper-accordion-item-header-border-color: rgba(0, 0, 0, 0.25);
+                --paper-accordion-item-header-color: black;
+                --paper-accordion-item-header-icon-color: black;
+                --paper-accordion-item-content-background: rgba(0,0,0,0.1);
+                --paper-accordion-item-content-color: black;
+                @apply(--paper-accordion-item);
+            }
+
             :host .accordion-item {
                 display: flex;
                 flex-direction: column;
@@ -18,9 +30,13 @@
             :host .accordion-header {
                 display: flex;
                 padding: 10px;
-                /*border: 1px solid rgba(0,0,0,.2);*/
-                box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+                overflow: hidden;
+                position: relative;
+                border: 0.5px solid var(--paper-accordion-item-header-border-color);
+                border-bottom: none;
                 cursor: pointer;
+                background-color: var(--paper-accordion-item-header-background);
+                color: var(--paper-accordion-item-header-color);
             }
 
             :host .accordion-header p {
@@ -35,14 +51,16 @@
             }
 
             :host .accordion-item-title {
-                color: rgba(0,0,0,.7);
+                opacity: 0.9;
                 font-size: 14px;
                 line-height: 2.1;
+                font-weight: 100;
             }
 
             :host .accordion-item-subtitle {
-                color: rgba(0,0,0,.4);
+                opacity: 0.6;
                 font-size: 12px;
+                font-weight: 100;
                 line-height: 1.7;
             }
 
@@ -50,6 +68,7 @@
                 width: 19px;
                 margin: 0 10px;
                 transition: 300ms all;
+                color: var(--paper-accordion-item-header-icon-color);
             }
 
             :host .accordion-header > div:nth-child(2) {
@@ -59,14 +78,14 @@
 
             :host .accordion-content {
                 margin: 0 10px;
-                background-color: rgba(0,0,0,0.1);
+                background-color: var(--paper-accordion-item-content-background);
+                color: var(--paper-accordion-item-content-color);
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+                transition: all 600ms ease-in-out;
             }
 
             :host([opened]) .accordion-content {
-                overflow: auto;
                 max-height: 500px;
             }
 
@@ -94,6 +113,7 @@
                 <div>
                     <p class="accordion-item-title">{{ title }}</p>
                     <p class="accordion-item-subtitle">{{ subTitle }}</p>
+                    <paper-ripple></paper-ripple>
                 </div>
             </div>
             <div class="accordion-content">
