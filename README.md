@@ -1,6 +1,6 @@
-##&lt;paper-accordion&gt;
+## &lt;paper-accordion&gt;
 
-`paper-accordion` is a material design styled Polymer 1.0 component for the accordion [pure javascript, no libraries].
+`<paper-accordion>` is a material design styled Polymer 1.x component for the accordion [pure javascript, no libraries].
 
 [Live Example](http://spacee.xyz/polymer-components/paper-accordion/demo.html)
 
@@ -46,7 +46,7 @@ The following custom properties are available for styling:
 | `--paper-accordion-item-content-background` | The accordion content background color | `rgba(0,0,0,0.1)` |
 | `--paper-accordion-item-content-color` | The accordion content text color | `black` |
 
-###&lt;paper-accordion&gt; - Properties
+### &lt;paper-accordion&gt; - Properties
 
 The following properties are available:
 
@@ -54,13 +54,13 @@ The following properties are available:
 | --- | --- | --- |
 | `close-others` | If it's 'true' there could me only one opened accordion | `false` |
 
-###&lt;paper-accordion-item&gt; - Properties
+### &lt;paper-accordion-item&gt; - Properties
 
 The following properties are available:
 
 | Property Name | Description | Default |
 | --- | --- | --- |
 | `icon` | The name of the icon | `icons:chevron-right` |
-| `icon-position` | The position of the icon (left || right) | `left` |
+| `icon-position` | The position of the icon `left` or `right` | `left` |
 | `title` | The title of the accordion item header | `` |
 | `sub-title` | The sub title of the accordion item header | `` |
