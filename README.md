@@ -8,7 +8,7 @@
 
 To install the component with the Bower, just run:
 
-`bower install --save paper-accordion`
+`bower install --save paper.accordion`
 
 Example:
 
