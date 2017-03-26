@@ -1,7 +1,7 @@
 <!--
 @author Arshak Khachatrian (<a href="mailto:akhxtern@gmail.com">akhxtern@gmail.com</a>)
 @website http://spacee.xyz
-@updateDate Mar 10, 2017
+@updateDate Mar 26, 2017
 -->
 
 <link rel="import" href="../polymer/polymer.html">
@@ -37,6 +37,10 @@
                 cursor: pointer;
                 background-color: var(--paper-accordion-item-header-background);
                 color: var(--paper-accordion-item-header-color);
+            }
+
+            :host([last-element]) .accordion-header{
+                border-bottom: 0.5px solid var(--paper-accordion-item-header-border-color);
             }
 
             :host .accordion-header p {
@@ -77,7 +81,6 @@
             }
 
             :host .accordion-content {
-                margin: 0 10px;
                 background-color: var(--paper-accordion-item-content-background);
                 color: var(--paper-accordion-item-content-color);
                 max-height: 0;

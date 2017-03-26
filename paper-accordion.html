@@ -1,35 +1,26 @@
 <!--
 @author Arshak Khachatrian (<a href="mailto:akhxtern@gmail.com">akhxtern@gmail.com</a>)
 @website http://spacee.xyz
-@updateDate Mar 10, 2017
+@updateDate Mar 26, 2017
 
 **********
 *
 *   *** PAPER ACCORDION ***
 *
-*   This floating action button is using the Material Design concept of expandable
-*   Paper Fab Button and using the Polymer components to make the concept happen.
-*
-*   *** EXAMPLE - without links ***
-*   <paper-fab-menu color="teal" icon="add" position="vertical">
-*        <paper-fab-menu-item color="teal" label="Favorites" icon="star" ></paper-fab-menu-item>
-*        <paper-fab-menu-item color="teal" label="Favorites" icon="star" ></paper-fab-menu-item>
-*        <paper-fab-menu-item color="teal" label="Favorites" icon="star" ></paper-fab-menu-item>
-*   </paper-fab-menu>
-*
-*   *** EXAMPLE - with links ***
-*
 *   <paper-accordion>
-*        <a href="#/favorites">
-*            <paper-fab-menu-item color="red" label="Favorites" icon="star" ></paper-fab-menu-item>
-*        </a>
-*        <a href="#/favorites">
-*            <paper-fab-menu-item color="red" label="Favorites" icon="star" ></paper-fab-menu-item>
-*        </a>
-*        <a href="#/favorites">
-*            <paper-fab-menu-item color="red" label="Favorites" icon="star" ></paper-fab-menu-item>
-*        </a>
-*   </paper-fab-menu>
+*        <paper-accordion-item title="Addy Osmani" icon="add" icon-position="left" sub-title="@polymer">
+*            The first.
+*        </paper-accordion-item>
+*        <paper-accordion-item title="Rob Dodson" icon="add" icon-position="left" sub-title="@polymer">
+*            The second.
+*        </paper-accordion-item>
+*        <paper-accordion-item title="Paul Irish" icon="add" icon-position="left" sub-title="@chrome">
+*            The third.
+*        </paper-accordion-item>
+*        <paper-accordion-item title="Rouben Meschian" icon="add" icon-position="left" sub-title="@cambridesemantics">
+*            The fourth.
+*        </paper-accordion-item>
+*    </paper-accordion>
 *
 ********** -->
 
@@ -39,10 +30,6 @@
 
 <dom-module id="paper-accordion">
     <template>
-        <style>
-
-        </style>
-
         <div class="container">
             <content is="paper-accordion-item"></content>
         </div>
@@ -58,22 +45,23 @@
             },
             attached: function(){
                 let that = this;
+                let items = Polymer.dom(that).children;
+
+                if(!items || !items.length) return;
+
+                items[items.length - 1].setAttribute('last-element', true);
 
                 if(that.closeOthers) {
-                    let items = Polymer.dom(that).children;
-
-                    if(items && items.length) {
-                        items.forEach(function(item){
-                            item.addEventListener('paper-accordion-open', function(){
-                                let openedElements = that.querySelectorAll('paper-accordion-item[opened]');
-                                openedElements.forEach(function(element) {
-                                    if(element != item) {
-                                        element.close();
-                                    }
-                                });
+                    items.forEach(function(item){
+                        item.addEventListener('paper-accordion-open', function(){
+                            let openedElements = that.querySelectorAll('paper-accordion-item[opened]');
+                            openedElements.forEach(function(element, i) {
+                                if(element != item) {
+                                    element.close();
+                                }
                             });
-                        })
-                    }
+                        });
+                    })
                 }
             }
         })

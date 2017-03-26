@@ -1,0 +1,27 @@
+{
+  "name": "paper-video",
+  "homepage": "http://spacee.xyz/paper-accordion/demo.html",
+  "authors": [
+    "Arshak Khachatrian <akhxtern@gmail.com>"
+  ],
+  "description": "A material design styled accordion for Polymer 1.x",
+  "main": "paper-accordion.html",
+  "keywords": [
+    "polymer",
+    "paper",
+    "accordion",
+    "web-components"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-ripple": "PolymerElements/paper-ripple#^1.0.5",
+    "iron-icons": "PolymerElements/iron-icons#^1.1.3",
+  }
+}
